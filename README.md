@@ -88,7 +88,7 @@ mydata %>%
     ##  Ideal    :21551   3rd Qu.: 5364  
     ##                    Max.   :18823
 
-Reading this: Take `mydata` and filter for cuts that are either "Premium"" or "Ideal"", select `cut` and `price`, and summarise.
+Reading this: Take `mydata` and filter for cuts that are either "Premium" or "Ideal", select `cut` and `price`, and summarise.
 
 `->`:
 -----
@@ -113,7 +113,7 @@ mydata_highquality = mydata %>%
 `%<>%`:
 -------
 
-And finally, there is `%<>%` to send data into a function, and then right-to-left assign it back into the original variable: it is a combination of `%>%` and `<-`. We don't usually use it when filtering or selecting variables from the original data frame (as you will overwrite and loose everything else), but it is very useful when doing a minor manipulation on a single column.
+And finally, there is `%<>%` to send data into a function, and then save the result back into the original variable: it is a combination of `%>%` and `<-`. We don't normally use it when filtering or selecting variables from the original data frame (as you will overwrite and loose everything else), but it is very useful when doing a minor manipulation on a single column.
 
 For example, even after filtering out the Fair, Good, and Very Good diamond cuts, they still show up with 0 counts in `summary()` above. This is because R knows that `cut` is a factor rather than just a character column:
 
@@ -143,4 +143,4 @@ mydata_highquality %>%
 `""` or `''`:
 -------------
 
-In most cases, `"Ideal"` and `'Ideal'` are equivalent. `''` is one less key to press (as its doesn't require *Shift*), but `""` is more widely used in online R example code.
+In most cases, `"Ideal"` and `'Ideal'` are equivalent. `''` is one less key to press (as it doesn't require *Shift*), but `""` is more widely used by the R community.
