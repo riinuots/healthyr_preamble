@@ -13,10 +13,17 @@ At the beginning of each script, we usually have these lines:
 ```{r, message = FALSE}
 rm(list=ls())       # clears the Environment tab
 
-library(tidyverse)  # packages: ggplot2, tibble, tidyr, readr, purrr, and dplyr 
-library(forcats)    # all the fct_recode() etc. functions,  forcats is an anagram for factors
-library(broom)      # functions: tidy(), glance(), augment()
-library(magrittr)   # includes the %<>% assignment-pipe ( %>% is loaded from dplyr)
+# packages: ggplot2, tibble, tidyr, readr, purrr, and dplyr 
+if (!require("tidyverse")) { install.package("tidyverse"); library(tidyverse) }
+# all the fct_recode() etc. functions,  forcats is an anagram for factors
+if (!require("forcats")) { install.package("forcats"); library(forcats) }
+# functions: tidy(), glance(), augment()
+if (!require("broom")) { install.package("broom"); library(broom) }
+# includes the %<>% assignment-pipe ( %>% is loaded from dplyr)
+if (!require("magrittr")) { install.package("magrittr"); library(magrittr) }
+# includes ICD-9, ICD-10 functions; Charlson, Elixhauser comorbidities and scores.
+if (!require("icd")) { install.package("icd"); library(icd) }
+
 ```
 
 To see more information about any package or function, move your cursor to it and press F1.
