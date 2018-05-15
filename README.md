@@ -9,8 +9,6 @@ Coding style
 At the beginning of each script, we usually have these lines:
 
 ``` r
-rm(list=ls())       # clears the Environment tab
-
 library(tidyverse)  # packages: ggplot2, tibble, tidyr, readr, purrr, and dplyr 
 library(forcats)    # all the fct_recode() etc. functions,  forcats is an anagram for factors
 library(broom)      # functions: tidy(), glance(), augment()
