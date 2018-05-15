@@ -9,7 +9,7 @@ Coding style
 At the beginning of each script, we usually have these lines:
 
 ``` r
-library(tidyverse)  # packages: ggplot2, tibble, tidyr, readr, purrr, and dplyr 
+library(tidyverse)  # includes packages: ggplot2, tibble, tidyr, readr, purrr, dplyr, and forcats
 library(broom)      # functions: tidy(), glance(), augment()
 ```
 
