@@ -1,7 +1,6 @@
 ---
 output:
-  pdf_document: default
-  github_document: null
+  github_document: default
 ---
 
 ![](healthyr_logo.jpg)
@@ -13,12 +12,8 @@ http://healthyr.surgicalinformatics.org
 At the beginning of each script, we usually have these lines:
 
 ```{r, message = FALSE}
-rm(list=ls())       # clears the Environment tab
-
 library(tidyverse)  # packages: ggplot2, tibble, tidyr, readr, purrr, and dplyr 
-library(forcats)    # all the fct_recode() etc. functions,  forcats is an anagram for factors
 library(broom)      # functions: tidy(), glance(), augment()
-library(magrittr)   # includes the %<>% assignment-pipe ( %>% is loaded from dplyr)
 ```
 
 To see more information about any package or function, move your cursor to it and press F1.
@@ -67,7 +62,7 @@ This might not seem that useful at first as `mydata %>% summary()` is actually l
 
 For example, look at this line:
 ```{r}
-summary(select(filter(mydata, cut %in% c('Premium', 'Ideal')), cut, price))
+summary(select(filter(mydata, cut %in% c("Premium", "Ideal")), cut, price))
 ```
 (`cut %in% c('Premium', 'Ideal')` is equivalent to `cut == 'Premium' | cut == 'Ideal'`, `|` means **or**)
 
@@ -75,7 +70,7 @@ It is quite hard to figure out what is going on there. Writing the exact same wo
 
 ```{r}
 mydata %>% 
-  filter(cut %in% c('Premium', 'Ideal')) %>% 
+  filter(cut %in% c("Premium", "Ideal")) %>% 
   select(cut, price) %>% 
   summary()
 
@@ -89,7 +84,7 @@ Once you really get into piped workflows it starts making sense to use the left-
 
 ```{r}
 mydata %>% 
-  filter(cut %in% c('Premium', 'Ideal')) %>% 
+  filter(cut %in% c("Premium", "Ideal")) %>% 
   select(cut, price) ->
   mydata_highquality
 ```
@@ -98,33 +93,9 @@ is equivalent to:
 
 ```{r}
 mydata_highquality = mydata %>% 
-  filter(cut %in% c('Premium', 'Ideal')) %>% 
+  filter(cut %in% c("Premium", "Ideal")) %>% 
   select(cut, price)
 ```
-
-## `%<>%`: 
-
-And finally, there is `%<>%` to send data into a function, and then save the result back into the original variable: it is  a combination of `%>%` and `<-`. We don't normally use it when filtering or selecting variables from the original data frame (as you will overwrite and lose everything else), but it is very useful when doing a minor manipulation on a single column.
-
-For example, even after filtering out the Fair, Good, and Very Good diamond cuts, they still show up with 0 counts in `summary()` above. This is because R knows that `cut` is a factor rather than just a character column:
-
-```{r}
-mydata$cut %>% class()
-```
-
-If you want to get rid of the sub-par categories completely, you need to use `fct_drop` from `library(forcats)` (note the use of `%<>%`):
-
-```{r}
-mydata_highquality$cut %<>% fct_drop()
-
-mydata_highquality %>% 
-  summary()
-```
-
-
-## `""` or `''`:
-
-In most cases, `"Ideal"` and `'Ideal'` are equivalent. `''` is one less key to press (as it doesn't require *Shift*), but `""` is more widely used by the R community.
 
 
 
